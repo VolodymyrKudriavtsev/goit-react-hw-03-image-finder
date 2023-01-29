@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import css from './searchbar.module.css';
 
@@ -17,6 +18,12 @@ class Searchbar extends Component {
     const { onSubmit } = this.props;
     const { search } = this.state;
     e.preventDefault();
+    if (search.trim() === '') {
+      return Notify.info('Please enter a search query.', {
+        fontSize: '17px',
+        position: 'center-center',
+      });
+    }
     onSubmit(search);
     this.reset();
   };
@@ -45,7 +52,6 @@ class Searchbar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            required
           />
         </form>
       </header>
