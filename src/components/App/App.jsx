@@ -32,6 +32,7 @@ class App extends Component {
   }
 
   onFormSubmit = search => {
+    if (search === this.state.search) return;
     this.setState({ search, page: 1, items: [], error: null });
   };
 
@@ -83,7 +84,6 @@ class App extends Component {
     const { onFormSubmit, loadMore, closeModal, showTargetImage } = this;
     const { error, items, loading, showModal, targetImage, totalHits, page } =
       this.state;
-    console.log(totalHits);
 
     return (
       <div className={css.container}>
